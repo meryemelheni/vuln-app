@@ -50,7 +50,7 @@ pipeline {
 
     stage('Image scan') {
       steps {
-        sh 'docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:latest image --exit-code 1 --severity CRITICAL vuln-app:jenkins'
+        sh 'docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:latest image --skip-db-update --exit-code 1 --severity CRITICAL vuln-app:jenkins'
       }
     }
   }

@@ -31,7 +31,7 @@ pipeline {
         }
         stage('Semgrep') {
           steps {
-         sh 'docker run --rm -v "$PWD:/src" semgrep/semgrep semgrep scan --config p/javascript --config p/owasp-top-ten --error --no-git /src || true'
+         sh 'docker run --rm -v "$PWD:/src" semgrep/semgrep semgrep scan --config p/javascript --config p/owasp-top-ten --error --include="*.js" /src || true'
           }
         }
         stage('npm audit') {

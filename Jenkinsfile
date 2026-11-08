@@ -29,9 +29,9 @@ pipeline {
             sh 'docker run --rm -v "$PWD:/repo" ghcr.io/gitleaks/gitleaks:latest git /repo --verbose || true'
           }
         }
-        stage('Semgrep') {
+          stage('Semgrep') {
           steps {
-sh 'docker run --rm -v "$PWD:/src" semgrep/semgrep semgrep scan --config p/javascript --config p/owasp-top-ten --error /src/src/ || true'
+            sh 'cd src && npx semgrep --config p/javascript --config p/owasp-top-ten --error . || true'
           }
         }
         stage('npm audit') {
